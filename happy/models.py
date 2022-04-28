@@ -6,6 +6,17 @@ User = get_user_model()
 
 class Project(models.Model):
 	"""Project model"""
+	BACK = 'back'
+	FRONT = 'front'
+	IOS = 'ios'
+	ANDROID = 'android'
+	TYPE_CHOICES = [
+		(BACK, 'back-end'),
+		(FRONT, 'front-end'),
+		(IOS, 'iOS'),
+		(ANDROID, 'android')
+	]
+
 	author = models.ForeignKey(
 		to=User,
 		on_delete=models.CASCADE,
@@ -13,10 +24,10 @@ class Project(models.Model):
 	)
 	title = models.CharField(max_length=128)
 	description = models.TextField(max_length=2048, blank=True)
-	project_type = models.CharField(max_length=128)
+	project_type = models.CharField(max_length=128, choices=TYPE_CHOICES)
 
 	def __str__(self):
-		return f"{self.title} ({self.project_type})"
+		return f"{self.title} ({self.id})"
 
 class Contributor(models.Model):
 	"""Contributor model"""
@@ -33,10 +44,28 @@ class Contributor(models.Model):
 	role = models.CharField(max_length=128)
 
 	def __str__(self):
-		return f"{self.user}: {self.project} {self.role}"
+		return f"{self.user} ({self.id}): {self.project} {self.role}"
 
 class Issue(models.Model):
 	"""Issue model"""
+	HI = 'high'
+	MD = 'medium'
+	LO = 'low'
+	PRIORITY_CHOICES = [
+		(HI, 'high'),
+		(MD, 'medium'),
+		(LO, 'low')
+	]
+
+	BUG = 'bug'
+	UP = 'upgrade'
+	TASK = 'task'
+	TAG_CHOICES = [
+		(BUG, 'bug'),
+		(UP, 'upgrade'),
+		(TASK, 'task')
+	]
+
 	author = models.ForeignKey(
 		to=User,
 		on_delete=models.CASCADE,
@@ -49,8 +78,8 @@ class Issue(models.Model):
 	)
 	title = models.CharField(max_length=128)
 	description = models.TextField(max_length=2048, blank=True)
-	tag = models.CharField(max_length=128)
-	priority = models.CharField(max_length=128)
+	tag = models.CharField(max_length=128, choices=TAG_CHOICES)
+	priority = models.CharField(max_length=128, choices=PRIORITY_CHOICES)
 	project = models.ForeignKey(
 		to=Project,
 		on_delete=models.CASCADE,
@@ -60,7 +89,7 @@ class Issue(models.Model):
 	time_created = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
-		return f"{self.title} from {self.author} on {self.project}"
+		return f"{self.title} ({self.id}) from {self.author} on {self.project}"
 
 class Comment(models.Model):
 	"""Comment model"""
@@ -78,4 +107,4 @@ class Comment(models.Model):
 	)
 
 	def __str__(sellf):
-		return f"comment on {self.issue} from {self.author}"
+		return f"comment ({self.id}) on {self.issue} from {self.author}"
