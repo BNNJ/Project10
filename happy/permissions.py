@@ -36,7 +36,6 @@ class IsContributor(permissions.BasePermission):
 	def has_object_permission(self, request, view, obj):
 		return True
 
-
 class YouShallNotPass(permissions.BasePermission):
 	def has_permission(self, request, view):
 		return False

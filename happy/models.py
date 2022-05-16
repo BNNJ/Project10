@@ -10,11 +10,13 @@ class Project(models.Model):
 	FRONT = 'front'
 	IOS = 'ios'
 	ANDROID = 'android'
+	TEST = 'test'
 	TYPE_CHOICES = [
 		(BACK, 'back-end'),
 		(FRONT, 'front-end'),
 		(IOS, 'iOS'),
-		(ANDROID, 'android')
+		(ANDROID, 'android'),
+		(TEST, 'test')
 	]
 
 	author = models.ForeignKey(
@@ -58,12 +60,12 @@ class Issue(models.Model):
 	]
 
 	BUG = 'bug'
-	UP = 'upgrade'
-	TASK = 'task'
+	IMP = 'improvement'
+	FEAT = 'feature'
 	TAG_CHOICES = [
 		(BUG, 'bug'),
-		(UP, 'upgrade'),
-		(TASK, 'task')
+		(IMP, 'improvement'),
+		(FEAT, 'feature')
 	]
 
 	author = models.ForeignKey(
