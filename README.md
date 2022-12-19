@@ -4,7 +4,7 @@ REST API using Django rest.
 
 ## Documentation
 
-[postman doc](https://documenter.getpostman.com/view/20183328/2s8YzZQesy)  
+[postman doc](https://documenter.getpostman.com/view/20183328/2s8YzZQexM)  
 [postman tests](tests.json)
 
 ## Setup
