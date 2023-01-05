@@ -1,2 +1,5 @@
-Once functional doc generator, now broken because of too many experiments.  
+# doc generator
+
+This was used to generate the postman doc.  
+Once functional, now broken because of too many experiments.  
 Might fix someday.
